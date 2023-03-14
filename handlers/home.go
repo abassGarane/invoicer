@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 )
@@ -11,10 +12,11 @@ func (h *DefaultHandler) HomePage(w http.ResponseWriter, r *http.Request) {
 		"./templates/partials/head.html",
 		"./templates/partials/header.html",
 		"./templates/partials/footer.html",
-		"./templates/pages/home.html",
+		// "./templates/pages/home.html",
 	}
 
 	ts, err := template.ParseFiles(files...)
+	fmt.Println(ts.Tree)
 	if err != nil {
 		http.Error(w, "Could not parse files", http.StatusInternalServerError)
 		return
